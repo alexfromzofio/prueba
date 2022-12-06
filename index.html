@@ -1,43 +1,52 @@
-<!DOCTYPE html>
-
-
 
 <html>
-
 	<head>
-		<meta charset="utf-8" />
-		<title> Mi primer página </title>
+		<title>Matplotlib</title>
+		<meta charset="utf-8">
+	
+		<link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
 		<script defer src="https://pyscript.net/latest/pyscript.js"></script>
+    	<py-config>
+packages = [
+  "matplotlib", "numpy"
+] 
+<!-- no se si es necesario mensionar numpy dado que está en matplot -->
+		</py-config>
+			
+<!--		<py-env>
+			- matplotlib 	
+		</py-env>
+-->		
+<!-- matplotlib ya instala numpy así que no hace falta referencia --> 
 	</head>
+	
 
 	<body>
-
-		<p> Hola mundo </p>
+		<h1> Hacemos gráficas con matplotlib</h1>
+		<div id = "plot"></div> <!-- aqui viene plot -->
 		
-		<label for="name">Name (4 to 8 characters):</label>
+		<py-script output = "plot"> 
+import matplotlib
+import matplotlib.pyplot as plt
+import numpy as np
 
-		<input type="text" id="name" name="name" size="10">
+t = np.arange(0.0, 2.0, 0.01)
+s = 1+ np.sin(2*np.pi*t)
+
+fig, ax = plt.subplots()
+ax.plot(t,s)
 		
-		<py-script>
+ax.set(xlabel = "time (s)", ylabel="voltage (mV)",
+	title="about as simple as it gets, folks")
+ax.grid()
 
-
-
-input = ("escribe tu nomre")
-i = [0,1,2,3,4,5]
-print(i[0])
-s = 0
-for j in range(len(i)):
-	s = s + i[j]
-print(s)
-
+fig
+	
+	
 		</py-script>
 		
 		
 		
 		
-		
-		
-
 	</body>
-
 </html>
